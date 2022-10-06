@@ -2,14 +2,14 @@ const exceptionHelper = require("../helpers/helper.exception");
 const cavesModel = require("../models/caves");
 
 exports.caveService = class CaveService {
-  static async createChamps(fields) {
+  static async createCave(fields) {
     let newCave = new cavesModel(fields);
     newCave.save();
     return newCave;
   }
 
-  static async findCaveByVin(id) {
-    let cave = await cavesModel.find({ vins: id });
+  static async retrieve(id) {
+    let cave = await cavesModel.findById(id);
     if (!cave) {
       throw new exceptionHelper.NotFound("Aucune Cave ne contient ce vin.");
     }

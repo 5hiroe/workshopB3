@@ -8,4 +8,12 @@ exports.champsService = class ChampsService {
     newChamps.save();
     return newChamps;
   }
+
+  static async retrieveChamps(id) {
+    let champs = await champsModel.find({ user_id: id });
+    if (!champs) {
+      throw new exceptionHelper.NotFound("Vous n'avez aucun champs.");
+    }
+    return champs;
+  }
 };

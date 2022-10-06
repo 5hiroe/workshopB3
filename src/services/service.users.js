@@ -3,7 +3,7 @@ const userModel = require("../models/user");
 
 exports.userService = class UserService {
   static async createUser(fields) {
-    let userExist = await userModel.find({ email: fields.email });
+    let userExist = await userModel.findOne({ email: fields.email });
     if (userExist) {
       throw new exceptionHelper.Conflict("Utilisateur déjà existant");
     }

@@ -7,4 +7,12 @@ exports.vinsService = class VinsService {
     newVin.save();
     return newVin;
   }
+
+  static async retrieveByCave(cave_id) {
+    let vins = await vinsModel.find({ cave_id: cave_id });
+    if (!vins) {
+      return exceptionHelper.NotFound("Cette cave n'a aucun vin.");
+    }
+    return vins;
+  }
 };

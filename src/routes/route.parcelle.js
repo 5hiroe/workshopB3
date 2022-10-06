@@ -1,8 +1,9 @@
 const router = require("express").Router();
-const controllers = require("../controllers/controller.cave");
+const controllers = require("../controllers/controller.parcelle");
 
 router.post("/create/:id", controllers.create);
-router.put("/modify/:id", controllers.modify);
-router.get("/find/:id", controllers.findCaves);
+router.get("/find/:id", controllers.findParcelles);
 router.get("/retrieve/:id", controllers.retrieve);
+router.put("/update/:id", controllers.update);
+
 module.exports = router;

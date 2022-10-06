@@ -1,5 +1,4 @@
 const exceptionHelper = require("../helpers/helper.exception");
-const champsModel = require("../models/champs");
 const parcellesModel = require("../models/parcelles");
 
 exports.parcellesService = class ParcellesService {
@@ -12,11 +11,17 @@ exports.parcellesService = class ParcellesService {
   static async findParcelles(champs_id) {
     let parcelles = await parcellesModel.find[{ champs_id: champs_id }];
     if (!parcelles) {
-      throw new exceptionHelper.NotFound(
-        "Aucune Parcelle assigné au champs, ou champs inexistant."
-      );
+      throw new exceptionHelper.NotFound("Aucune parcelle assignée au champs.");
     }
     return parcelles;
+  }
+
+  static async retrieveParcelle(id) {
+    let parcelle = await parcellesModel.findById(id);
+    if (!parcelle) {
+      throw new exceptionHelper.NotFound("Parcelle non existente.");
+    }
+    return parcelle;
   }
 
   static async updateParcelles(id, fields) {
